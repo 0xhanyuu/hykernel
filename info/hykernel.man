@@ -1,0 +1,14 @@
+hykernel(1)
+
+NAME
+	hykernel - hanyuu's kernel utility for archlinux
+
+SYNPOSIS
+	list
+	set
+	show
+	sanity_check
+	version
+	help
+
+1.0
