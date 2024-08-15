@@ -1,4 +1,4 @@
-# hykernel 1.0
+# hykernel
 setup:
 
 run 'setup-hykernel.sh' located in this directory
