@@ -155,7 +155,10 @@ void run_command(enum command current_command)
 
 		case help:
 		{
-			system("cat ../docs/hykernel.man | less");
+			char help_command[128];
+			snprintf(help_command, 128, g_hykernel_directory, "cat %s | less");
+			printf("help command buffer: %s\n", help_command);
+			system(help_command);
 		}
 		break;
 	}

@@ -3,6 +3,7 @@
 DEFAULT="\e[0m"
 BOLD="\e[1m"
 
+# Change this to true to install the visual hykernel interface
 VISUAL_HYKERNEL=false
 
 echo -e "creating hykernel_directory file ..."
@@ -28,4 +29,3 @@ sudo ln -s $hykd/bin/hykernel /bin/hykernel
 echo -e "done!\n"
 
 echo -e -n "${BOLD}[hykernel]${DEFAULT} "
-cat ./info/hykernel.version | head -n 1
