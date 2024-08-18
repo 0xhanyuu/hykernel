@@ -1,13 +1,4 @@
 TODO:
 
-hykernel list					[x]
-hykernel set					[]
-hykernel show					[]
-hykernel configure				[]
-hykernel configure-interface	[]
-hykernel sanity_check			[]
-hykernel version				[x]
-hykernel help					[x]
+modularise code ( c files, header files ) []
 
-set up project on github		[]
-push changes					[]
