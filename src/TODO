@@ -1,0 +1,6 @@
+TODO:
+
+modularise code ( c files, header files ) []
+clean up functions []
+rewrite snprintf statements []
+get executable process in a cleaner way []
