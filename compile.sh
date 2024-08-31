@@ -1,3 +1,6 @@
 #!/bin/bash
 
-gcc src/hykernel.c src/main.c -o main
+pwd > $HOME/hykernel_directory
+hykd=$(cat $HOME/hykernel_directory)
+
+gcc $hykd/src/hykernel.c $hykd/src/main.c -o $hykd/bin/main

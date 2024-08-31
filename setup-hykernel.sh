@@ -13,7 +13,7 @@ hykd=$(cat $HOME/hykernel_directory)
 
 echo -e "compiling hykernel ..."
 
-gcc $hykd/src/hykernel.c -o $hykd/bin/hykernel
+./$hykd/compile.sh
 
 if [[ VISUAL_HYKERNEL == true ]]
 then
@@ -29,3 +29,4 @@ sudo ln -s $hykd/bin/hykernel /bin/hykernel
 echo -e "done!\n"
 
 echo -e -n "${BOLD}[hykernel]${DEFAULT} "
+cat $hykd/info/hykernel.version
