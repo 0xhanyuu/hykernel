@@ -20,12 +20,9 @@ int file_handling(int argc, char **argv)
 	// if no additional argument
 	if ( argc != 2 )
 	{
-		// non-segmentation fault code [optional ^_^]:
-		// return file_error(argv[0]);
+		return file_error(argv[0]);
 		file_error();
 	}
-
-	//printf("%s %s\n", argv[0], argv[1]);
 
 	// if filename, check validity
 	int return_code = check_validity(argv[1]);
@@ -111,6 +108,7 @@ void run_command(enum command current_command)
 
 		case show:
 		{
+			system("ls /usr/src/linux");
 			//output symlink kernel
 		}
 		break;
