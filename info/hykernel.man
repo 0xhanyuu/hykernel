@@ -10,5 +10,3 @@ SYNPOSIS
 	sanity_check
 	version
 	help
-
-1.0
