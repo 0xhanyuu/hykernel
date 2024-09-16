@@ -11,6 +11,10 @@ echo -e "creating hykernel_directory file ..."
 pwd > $HOME/hykernel_directory
 hykd=$(cat $HOME/hykernel_directory)
 
+echo -e "cloning hcvtslib ..."
+
+git clone https://github.com/0xhanyuu/hcvtslib.git
+
 echo -e "compiling hykernel ..."
 
 ./$hykd/compile.sh
