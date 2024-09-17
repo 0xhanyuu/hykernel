@@ -1,6 +1,8 @@
 TODO:
 
 modularise code ( c files, header files ) [s]
-clean up functions []
-rewrite snprintf statements []
-get executable process in a cleaner way []
+clean up functions [s]
+rewrite snprintf statements [s]
+
+- get executable process in a cleaner way []
++ read from ~/hykernel_directory file and store in global string
