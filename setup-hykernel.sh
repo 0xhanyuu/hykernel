@@ -10,6 +10,7 @@ echo -e "creating hykernel_directory file ..."
 
 pwd > $HOME/hykernel_directory
 hykd=$(cat $HOME/hykernel_directory)
+cp $HOME/hykernel_directory ./hykernel_directory
 
 if [[ VISUAL_HYKERNEL == false ]]
 then
