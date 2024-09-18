@@ -11,18 +11,21 @@ echo -e "creating hykernel_directory file ..."
 pwd > $HOME/hykernel_directory
 hykd=$(cat $HOME/hykernel_directory)
 
-echo -e "cloning hcvtslib ..."
-
-git clone https://github.com/0xhanyuu/hcvtslib.git
-
-echo -e "compiling hykernel ..."
-
-./$hykd/compile.sh
+if [[ VISUAL_HYKERNEL == false ]]
+then
+	echo -e "compiling hykernel ..."
+	./$hykd/compile.sh
+fi
 
 if [[ VISUAL_HYKERNEL == true ]]
 then
 	echo -e "compiling visual hykernel ..."
-	gcc $hykd/src/hykernel.visual.c -o $hykd/bin/hykernel
+	./$hykd/compile_visual.sh
+
+	echo -e "cloning hcvtslib ..."
+	git clone https://github.com/0xhanyuu/hcvtslib.git
+
+
 fi
 
 echo -e -n "creating symbolic link to ${BOLD}/bin/hykernel${DEFAULT} "
