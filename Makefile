@@ -21,6 +21,6 @@ all: $(OBJS)
 
 # remove files
 clean:
-	rm -f main $(OBJDIR)/*
+	rm -f main hykernel_directory ${OBJDIR}
 
 .PHONY: clean
