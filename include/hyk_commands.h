@@ -1,4 +1,6 @@
+#include "hyk_enums.h"
+
 #pragma once
 
-void run_command(enum command current_command);
-enum command get_command(int argc, char **argv);
+void run_command(e_command current_command);
+e_command get_command(int argc, char **argv);
