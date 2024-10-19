@@ -1,13 +1,15 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 #pragma once
 
-enum command
+typedef enum
 {
-	nop = 0,
-
-	list,
-	set,
-	show,
-	sanity_check,
-	version,
-	help,
-}
+    nop = 0,
+    list,
+    set,
+    show,
+    sanity_check,
+    version,
+    help
+} e_command;
