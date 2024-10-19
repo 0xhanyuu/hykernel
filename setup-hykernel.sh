@@ -3,8 +3,7 @@
 DEFAULT="\e[0m"
 BOLD="\e[1m"
 
-pwd > $HOME/hykernel_directory
-hykd=$(cat $HOME/hykernel_directory)
+hykd=$(pwd)
 
 echo -e "compiling hykernel ..."
 make
