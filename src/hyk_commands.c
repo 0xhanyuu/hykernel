@@ -1,10 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "hyk_enums.h"
 
-void run_command(enum command current_command)
+extern char hykernel_directory[128];
+
+void run_command(e_command current_command)
 {
 	switch(current_command)
 	{
+		case nop:
+		{
+		}
+		break;
+
 		case list:
 		{
 		}
@@ -12,6 +20,8 @@ void run_command(enum command current_command)
 
 		case sanity_check:
 		{
+			printf("%s\n", "symlink should output the following: ");
+			printf("%s\n", "kernel -> /usr/src/linux");
 		}
 		break;
 
@@ -37,13 +47,20 @@ void run_command(enum command current_command)
 	}
 }
 
-enum command get_command(int argc, char **argv)
+
+// rework
+
+e_command get_command(int argc, char **argv)
 {
 	char first_character = argv[1][0];
 	char second_character = argv[1][1];
 
 	switch(first_character)
 	{
+		case 'n':
+		return nop;
+		break;
+
 		case 'l':
 		return list;
 		break;
