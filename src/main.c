@@ -2,83 +2,59 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <hykernel.h> // functions
+#include <limits.h>
 
-char g_hykernel_directory[128];
-char executable_path[128];
-ssize_t bytes_read;
+#include "hyk_commands.h"
+#include "hyk_filehandling.h"
+#include "hyk_enums.h"
 
-char * command_list[6] = {
-				"list", "set",
-				"show", "sanity_check",
-				"version", "help"};
-
-enum command
+char * command_list[6] =
 {
-	nop = 0,
-
-	list,
-	set,
-	show,
-	sanity_check,
-	version,
-	help,
+	"list", "set",
+	"show", "sanity_check",
+	"version", "help"
 };
 
-enum command get_command(int argc, char **argv)
-{
-	char first_character = argv[1][0];
-	char second_character = argv[1][1];
-
-	switch(first_character)
-	{
-		case 'l':
-		return list;
-		break;
-
-		case 's':
-		switch(second_character)
-		{
-			case 'a':
-			return sanity_check;
-			break;
-
-			case 'e':
-			return set;
-			break;
-
-			case 'h':
-			return show;
-			break;
-		}
-		break;
-
-		case 'v':
-		return version;
-		break;
-
-		case 'h':
-		return help;
-		break;
-	}
-}
+char hykernel_directory[128];
+char kernel_list_directory[128];
 
 int main(int argc, char **argv)
 {
-	enum command current_command;
+	e_command current_command;
 
-	// allocate memory for executable_path
-	executable_path = (char *)malloc(128 * sizeof(char));
-	bytes_read = readlink("/proc/self/exe", executable_path, 128-1);
+    /*
+	char * hykd_buffer = (char *)malloc(128 * sizeof(char));
 
-	// append null term char
-	executable_path[bytes_read] = '\x00';
+	ssize_t executable_len = readlink(
+		"/proc/self/exe",
+		hykd_buffer,
+		sizeof(hykernel_directory) - 1
+	);
+	
+	char * lso_ptr = strrchr(hykd_buffer, '/');
+	*(lso_ptr + 1) = '\x00';
+	strcpy(hykernel_directory, hykd_buffer);
+
+	free(hykd_buffer);
+
+	if ( executable_len != -1 )
+	{
+		hykernel_directory[executable_len] = '\x00';	
+		printf("exec path: %s\n", hykernel_directory);
+	}
+	else
+	{
+		perror("readlink");
+		return EXIT_FAILURE;
+	}
+    */
+
+    
 
 	file_handling(argc, argv);
 
 	current_command = get_command(argc, argv);
 	run_command(current_command);
 
-	free(executable_path);
 	return 0;
 }
