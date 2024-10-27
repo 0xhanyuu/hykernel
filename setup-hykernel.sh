@@ -44,7 +44,7 @@ make
 if [[ ! -e /bin/hykernel ]]; then
     print_hykernel && echo -e -n "Creating symbolic link to ${BOLD}/bin/hykernel${DEFAULT} "
                       echo -e    "from ${BOLD}$hykd/hykernel${DEFAULT}..."
-    sudo ln -s "$hykd/main" /bin/hykernel
+    sudo ln -s "$hykd/hykernel" /bin/hykernel
 else
     print_hykernel && echo -e "Symbolic link ${BOLD}/bin/hykernel${DEFAULT} already exists, skipping ..."
 fi
