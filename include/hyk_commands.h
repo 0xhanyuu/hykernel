@@ -3,4 +3,4 @@
 #pragma once
 
 void run_command(e_command current_command);
-e_command get_command(int argc, char **argv);
+e_command get_command(char **argv);
