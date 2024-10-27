@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "hyk_enums.h"
 
 extern char hykernel_directory[128];
@@ -52,42 +53,55 @@ void run_command(e_command current_command)
 
 e_command get_command(int argc, char **argv)
 {
-	char first_character = argv[1][0];
-	char second_character = argv[1][1];
+    char command[16];
+    strcpy(command, argv[0]);
 
-	switch(first_character)
+	switch(command[0]) // look at first character
 	{
 		case 'n':
-		return nop;
+        if ( strcmp(command, "") == 0 )
+		    return nop;
 		break;
 
 		case 'l':
-		return list;
+        if ( strcmp(command, "list") == 0 )
+		    return list;
 		break;
 
 		case 's':
-		switch(second_character)
-		{
-			case 'a':
-			return sanity_check;
-			break;
+            switch(command[1]) // look at second character
+            {
+                case 'a':
+                if ( strcmp(command, "sanity_check") == 0 )
+                    return sanity_check;
+                break;
 
-			case 'e':
-			return set;
-			break;
+                case 'e':
+                if ( strcmp(command, "set") == 0 )
+                    return set;
+                break;
 
-			case 'h':
-			return show;
-			break;
-		}
+                case 'h':
+
+                if ( strcmp(command, "show") == 0 )
+                    return show;
+                break;
+            }
 		break;
 
 		case 'v':
-		return version;
+        if ( strcmp(command, "version") == 0 )
+		    return version;
 		break;
 
 		case 'h':
-		return help;
+        if ( strcmp(command, "help") == 0 )
+		    return help;
 		break;
+
+        default:
+        fprintf(stderr, "%s\n", "Command not found!");
+        return 1;
+        break;
 	}
 }
