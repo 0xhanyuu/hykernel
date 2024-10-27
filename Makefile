@@ -17,10 +17,10 @@ obj/%.o: src/%.c
 
 # link + create executable
 all: $(OBJS) 
-	$(CC) $(CFLAGS) -o main $(OBJS) 
+	$(CC) $(CFLAGS) -o hykernel $(OBJS) 
 
 # remove files
 clean:
-	rm -f main hykernel_directory ${OBJDIR}
+	rm -f hykernel ${OBJDIR}
 
 .PHONY: clean
