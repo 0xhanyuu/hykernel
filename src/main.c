@@ -51,7 +51,10 @@ int main(int argc, char **argv)
 
     
 
-	file_handling(argc, argv);
+	if ( file_handling(argc, argv) == EXIT_FAILURE )
+    {
+        return EXIT_FAILURE;
+    }
 
 	current_command = get_command(argc, argv);
 	run_command(current_command);
