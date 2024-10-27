@@ -22,7 +22,7 @@ if [[ ! -e /etc/opt/hykernel/config/config ]]; then
 	sudo touch /etc/opt/hykernel/config/config
 else
 	print_hykernel && echo -e -n "${BOLD}/etc/opt/hykernel/config/config${DEFAULT} " 
-                            echo "file exists! Skipping ..."
+                            echo "file exists! Skipping..."
 fi
 
 print_hykernel && echo "Use custom kernel directory? (Default = 'n') [y/n]"
