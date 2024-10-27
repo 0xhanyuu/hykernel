@@ -7,6 +7,9 @@
 extern char hykernel_directory[128];
 extern char kernel_list_directory[128];
 
+void print_hykernel() { printf("\e[1m[hykernel]:\e[0m "); }
+void e_print_hykernel() { fprintf(stderr, "\e[1m[hykernel]:\e[0m "); }
+
 void output_help()
 {
 
