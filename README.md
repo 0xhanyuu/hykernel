@@ -16,7 +16,9 @@ A symbolic link will be made from `/bin/hykernel` to your hykernel directory's c
 
 Run `uninstall-hykernel.sh`.
 
-This will remove all objects and binaries but will keep your kernel_list directory and your configuration files, unless specified otherwise with the flag **--purge-all**. **This command will remove everything in `/etc/opt/hykernel`, including the directory itself. Ensure that you have moved your files and backed up what you need before running this command.**
+This will remove all objects and binaries but will keep your kernel_list directory and your configuration files, unless specified otherwise with the flag **--purge-all**.
+
+**This command will remove everything in `/etc/opt/hykernel`, including the directory itself. Ensure that you have moved your files and backed up what you need before running this command.**
 
 **Dependencies:**
 
