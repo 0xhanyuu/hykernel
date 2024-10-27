@@ -2,8 +2,15 @@
 #include <stdlib.h>
 #include <string.h>
 #include "hyk_enums.h"
+#include "hyk_filehandling.h"
 
 extern char hykernel_directory[128];
+extern char kernel_list_directory[128];
+
+void output_help()
+{
+
+}
 
 void run_command(e_command current_command)
 {
@@ -16,33 +23,54 @@ void run_command(e_command current_command)
 
 		case list:
 		{
+            char * tmp_command = (char *)malloc(256 * sizeof(char));
+            snprintf(tmp_command, 256,
+                "count=0; for kernel in $(ls %s); do "
+                "echo \"$((++count)). $kernel\"; "
+                "done", kernel_list_directory
+            );
+            system(tmp_command);
+            free(tmp_command);
 		}
 		break;
 
 		case sanity_check:
 		{
-			printf("%s\n", "symlink should output the following: ");
-			printf("%s\n", "kernel -> /usr/src/linux");
+            print_hykernel();
+			printf("%s\n", "Symlink should output the following: ");
+			print_hykernel();
+            printf("%s\n", "/usr/src/linux -> <kernel>");
 		}
 		break;
 
 		case set:
 		{
-		}
+            //// set given number to kernel
+		    // append kernel to kernel directory in a buffer,
+            // set current kernel to buffer
+            // ln -s %s /usr/src/linux
+            //       ^ kernel
+        }
 		break;
 
 		case show:
 		{
+            // output the directory /usr/src/linux points to
+            // i.e. current kernel
+            // char * tmp_command = (char *)malloc(256 * sizeof(char));
+            // system("ls /usr/src/linux");
 		}
 		break;
 
 		case version:
 		{
+            // only relevant for releases
 		}
 		break;
 
 		case help:
 		{
+            output_help();
 		}
 		break;
 	}
@@ -51,10 +79,10 @@ void run_command(e_command current_command)
 
 // rework
 
-e_command get_command(int argc, char **argv)
+e_command get_command(char **argv)
 {
     char command[16];
-    strcpy(command, argv[0]);
+    strcpy(command, argv[1]);
 
 	switch(command[0]) // look at first character
 	{
@@ -82,7 +110,6 @@ e_command get_command(int argc, char **argv)
                 break;
 
                 case 'h':
-
                 if ( strcmp(command, "show") == 0 )
                     return show;
                 break;
@@ -100,8 +127,10 @@ e_command get_command(int argc, char **argv)
 		break;
 
         default:
+        e_print_hykernel();
         fprintf(stderr, "%s\n", "Command not found!");
         return 1;
         break;
 	}
+    return nop;
 }
