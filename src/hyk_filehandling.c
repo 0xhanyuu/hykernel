@@ -2,17 +2,17 @@
 #include <stdlib.h>
 #include <string.h>
 
+void print_hykernel() { printf("\e[1m[hykernel]:\e[0m "); }
+
 int file_error()
 {
-	fprintf(stderr, "usage: hykernel <command>\n");
-	fprintf(stderr, "'hykernel help' for detailed usage information\n\n");
+    print_hykernel();
+	fprintf(stderr, "Usage: hykernel <command>\n");
+	print_hykernel();
+    fprintf(stderr, "'hykernel help' for detailed usage information.");
 
 	return EXIT_FAILURE;
 }
-
-void print_hykernel() { printf("\e[1m[hykernel]:\e[0m "); }
-
-int check_validity(char * input_string) { return 0; }
 
 int file_handling(int argc, char **argv)
 {
@@ -20,9 +20,6 @@ int file_handling(int argc, char **argv)
 	if ( argc != 2 )
 	{
 		return file_error(argv[0]);
-		file_error();
 	}
-
-	// if filename, check validity
-	int return_code = check_validity(argv[1]);
+    return EXIT_SUCCESS;
 }
