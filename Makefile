@@ -1,6 +1,6 @@
 # compiler information
 CC = gcc
-CFLAGS = -Wall -I ./include
+CFLAGS = -Wall -Wextra -std=gnu17 -I ./include
 
 # directories
 INCDIR = include/
@@ -21,6 +21,6 @@ all: $(OBJS)
 
 # remove files
 clean:
-	rm -f hykernel ${OBJDIR}
+	rm -f hykernel ${OBJS}
 
 .PHONY: clean
