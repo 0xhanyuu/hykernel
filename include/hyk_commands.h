@@ -2,5 +2,8 @@
 
 #pragma once
 
+void print_hykernel();
+void e_print_hykernel();
+
 void run_command(e_command current_command);
 e_command get_command(char **argv);
