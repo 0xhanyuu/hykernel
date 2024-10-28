@@ -42,7 +42,7 @@ void run_command(e_command current_command)
             print_hykernel();
 			printf("%s\n", "Symlink should output the following: ");
 			print_hykernel();
-            printf("%s\n", "/usr/src/linux -> <kernel>");
+            printf("%s\n", "linux -> <kernel>");
 		}
 		break;
 
@@ -52,7 +52,7 @@ void run_command(e_command current_command)
 		    // append kernel to kernel directory in a buffer,
             // set current kernel to buffer
             // ln -s %s /usr/src/linux
-            //       ^ kernel
+            //       ^ kernel (target)
         }
 		break;
 
@@ -60,8 +60,9 @@ void run_command(e_command current_command)
 		{
             // output the directory /usr/src/linux points to
             // i.e. current kernel
-            // char * tmp_command = (char *)malloc(256 * sizeof(char));
-            // system("ls /usr/src/linux");
+            
+            e_print_hykernel();
+            system("ls /usr/src -l | grep linux | cut -c42-");
 		}
 		break;
 
