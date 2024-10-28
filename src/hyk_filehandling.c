@@ -13,7 +13,7 @@ int file_error()
 	return EXIT_FAILURE;
 }
 
-int file_handling(int argc, char **argv)
+int file_handling(int argc)
 {
 	// if no additional argument
 	if ( argc < 2 )
