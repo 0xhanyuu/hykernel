@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "hyk_commands.h"
 
 int file_error()
 {
@@ -15,9 +16,10 @@ int file_error()
 int file_handling(int argc, char **argv)
 {
 	// if no additional argument
-	if ( argc != 2 )
+	if ( argc < 2 )
 	{
 		return file_error();
 	}
+
     return EXIT_SUCCESS;
 }
