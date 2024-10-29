@@ -12,7 +12,22 @@ void e_print_hykernel() { fprintf(stderr, "\e[1m[hykernel]:\e[0m "); }
 
 void output_help()
 {
-
+    printf(
+    "%s%s%s%s%s%s%s%s%s",
+    "hykernel v1.0 \e[1m(pre-release)\e[0m\n",
+    "\n",
+    "Usage: hykernel <command>\n",
+    "   or: hykernel <command> <number>\n",
+    "\n",
+    "Options:\n"
+    "  list\t\tProduces a *numbered* list of all kernel files located\n"
+    "  \t\t  in \e[1m/etc/opt/hykernel/kernel_list\e[0m or custom kernel directory\n",
+    "  set\t\tSet the \e[1m/usr/src/linux\e[0m symlink to the given kernel through\n"
+    "  \t\t  the <number> argument, refer to 'list' to choose correct kernel\n",
+    "  show\t\tOutputs the current symlink, given link \e[1m/usr/src/linux\e[0m\n"
+    "  \t\t  and chosen kernel being target\n",
+    "  help\t\tDisplay this help and exit\n\n"
+    );
 }
 
 void run_command(e_command current_command)
