@@ -2,15 +2,15 @@
 
 Utility to make kernel configuration and setup easier on Arch-based distributions.
 
-Inspired by `eselect kernel` found on Gentoo Linux.
+Inspired by `eselect kernel` found in Gentoo Linux.
 
 ## **Setup:**
 
 Run `setup-hykernel.sh`.
 
-This will create a directory in `/etc/opt` called 'hykernel', and will store your installed and configured kernels and configuration files, unless specified otherwise.
+This will create a directory in `/etc/opt` called `hykernel`, and will store your installed and configured kernels (`kernel_list/*`) and configuration files (`config/*`), unless specified otherwise.
 
-A symbolic link will be made from `/bin/hykernel` to your hykernel directory's compiled binary.
+A symbolic link will be made from your hykernel directory's compiled binary to `/bin/hykernel`.
 
 ## **Uninstall:**
 
