@@ -36,6 +36,7 @@ elif
 	print_hykernel && echo -n "Creating default hykernel directory in "
 	                  echo -e "${BOLD}/etc/opt/hykernel${DEFAULT}..."
 	sudo mkdir -p /etc/opt/hykernel/kernel_list
+    sudo mkdir -p /etc/opt/hykernel/tmp
 fi
 
 print_hykernel && echo -e "Compiling hykernel ..."
