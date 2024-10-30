@@ -11,6 +11,7 @@ print_hykernel() {
 
 config_directory="/etc/opt/hykernel/config/"
 config_file="/etc/opt/hykernel/config/config"
+temp_directory="/etc/opt/hykernel/temp"
 
 hykernel_directory=$(cat "$config_file" | head -n 1 | cut -d'=' -f2)
 kernel_directory=$(cat "$config_file" | tail -n 1 | cut -d'=' -f2)
@@ -32,6 +33,8 @@ if [[ "$1" == "--purge-all" ]]; then
         sudo rm -rfv "$config_directory"/*
         print_hykernel && echo "Removing all kernel directory files..."
         sudo rm -rfv "$kernel_directory"/*
+        print_hykernel && echo "Removing all temporary directory files..."
+        sudo rm -rfv "$temp_directory"/*
         print_hykernel && echo "Removing all binary and object files..."
         make clean
         print_hykernel && echo "Removing all symlinks..."
