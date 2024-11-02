@@ -1,6 +1,6 @@
 # compiler information
 CC = gcc
-CFLAGS = -Wall -Wextra -std=gnu17 -I ./include
+CFLAGS = -Wall -Wextra -std=gnu17 -I $(INCDIR)
 
 # directories
 INCDIR = include/
@@ -11,16 +11,21 @@ SRCDIR = src/
 SRCS = $(wildcard $(SRCDIR)/*.c)
 OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
 
+# target binary
+TARGET = hykernel
+
 # create all object files
-obj/%.o: src/%.c
+$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # link + create executable
-all: $(OBJS) 
-	$(CC) $(CFLAGS) -o hykernel $(OBJS) 
+all: $(TARGET) 
+
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
 
 # remove files
 clean:
-	rm -f hykernel ${OBJS}
+	rm -f $(TARGET) ${OBJS}
 
 .PHONY: clean
