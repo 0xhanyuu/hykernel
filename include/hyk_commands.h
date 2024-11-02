@@ -2,6 +2,8 @@
 
 #pragma once
 
+char * command_list[7];
+
 void print_hykernel();
 void e_print_hykernel();
 
