@@ -6,6 +6,7 @@
 typedef enum
 {
     nop = 0,
+    add,
     list,
     set,
     show,
