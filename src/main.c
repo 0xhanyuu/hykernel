@@ -50,7 +50,7 @@ int main(int argc, char **argv)
     kernel_list_directory[strlen(kernel_list_directory) - 1] = '\x00';
 
 	current_command = get_command(argv);
-	run_command(current_command);
+	run_command(current_command, argv);
 
 	return 0;
 }
