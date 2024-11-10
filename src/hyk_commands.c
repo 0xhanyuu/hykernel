@@ -30,34 +30,64 @@ void output_help()
     );
 }
 
-void run_command(e_command current_command)
+void run_command(e_command current_command, char **argv)
 {
 	switch(current_command)
 	{
-		case nop:
-		{
-		}
-		break;
+		case nop: { } break;
+
+        case add:
+        {
+            char * add_command = (char *)malloc(512 * sizeof(char));
+            char * kernel_to_mv = (char *)malloc(256 * sizeof(char));
+            strcpy(kernel_to_mv, argv[2]);
+
+            print_hykernel();
+            printf("%s\n", "Appending to /etc/opt/hykernel/tmp ...");
+
+            snprintf(add_command, 512,
+                "sudo mv %s /etc/opt/hykernel/kernel_list/ -v" \
+                "count=0; for kernel in $(ls %s); do " \
+                "echo \"$((++count)). $kernel\"; " \
+                "done | sudo tee /etc/opt/hykernel/tmp",
+                kernel_to_mv, kernel_list_directory
+            );
+
+            free(kernel_to_mv); free(add_command);
+        }
+        break;
 
 		case list:
 		{
-            char * tmp_command = (char *)malloc(256 * sizeof(char));
-            snprintf(tmp_command, 256,
-                "count=0; for kernel in $(ls %s); do "
-                "echo \"$((++count)). $kernel\"; "
+            char * list_command = (char *)malloc(512 * sizeof(char));
+
+            snprintf(list_command, 512,
+                "count=0; for kernel in $(ls %s); do " \
+                "echo \"$((++count)). $kernel\"; " \
                 "done", kernel_list_directory
             );
-            system(tmp_command);
-            free(tmp_command);
+
+            system(list_command);
+            free(list_command);
 		}
 		break;
 
 		case sanity_check:
 		{
+            char * sanity_check_command = (char *)malloc(512 * sizeof(char));
+
             print_hykernel();
 			printf("%s\n", "Symlink should output the following: ");
-			print_hykernel();
-            printf("%s\n", "linux -> <kernel>");
+			e_print_hykernel();
+            snprintf(
+            sanity_check_command, 512,
+            "echo \"/usr/src/linux -> %s/<kernel>\"",
+            kernel_list_directory
+            );
+
+            system(sanity_check_command);
+
+            free(sanity_check_command);
 		}
 		break;
 
@@ -68,6 +98,41 @@ void run_command(e_command current_command)
             // set current kernel to buffer
             // ln -s %s /usr/src/linux
             //       ^ kernel (target)
+
+            char * user_input_str = argv[2]; // user input
+            char user_input = user_input_str[0]; // number value from user input
+            FILE * tmp_f = fopen("/etc/opt/hykernel/tmp", "r"); // list file
+            char * set_command = (char *)malloc(512 * sizeof(char));
+            char * chosen_kernel = (char *)malloc(256 * sizeof(char));
+            char * f_buffer = (char *)malloc(256 * sizeof(char));
+            int current_line = 1;
+
+            // find corresponding number value in list file 
+            while ( fgets(f_buffer, sizeof(f_buffer), tmp_f) )
+            {
+                printf("%s\n", "in while loop !");
+                if ( current_line == user_input )
+                {
+                    printf("%s\n", "found!");
+                    
+                    strcpy(chosen_kernel, f_buffer);
+                    break;
+                }
+                else
+                {
+                }
+                current_line++;
+            }
+
+            snprintf(
+            set_command, 512, "sudo ln -s %s/%s /usr/src/linux",
+            kernel_list_directory, chosen_kernel);
+
+            printf("set_command:%s\n", set_command);
+
+            // system(set_command);
+
+            free(user_input_str); free(set_command); free(chosen_kernel); free(f_buffer);
         }
 		break;
 
@@ -77,7 +142,7 @@ void run_command(e_command current_command)
             // i.e. current kernel
             
             e_print_hykernel();
-            system("ls /usr/src -l | grep linux | cut -c42-");
+            system("echo \"/usr/src/$(ls /usr/src -l | grep linux | cut -c42-)\"");
 		}
 		break;
 
