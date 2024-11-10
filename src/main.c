@@ -8,12 +8,7 @@
 #include "hyk_filehandling.h"
 #include "hyk_enums.h"
 
-char * command_list[6] =
-{
-	"list", "set",
-	"show", "sanity_check",
-	"version", "help"
-};
+extern char * command_list[6];
 
 char hykernel_directory[128];
 char kernel_list_directory[128];
