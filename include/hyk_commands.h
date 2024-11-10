@@ -7,5 +7,5 @@ void e_print_hykernel();
 
 void output_help();
 
-void run_command(e_command current_command);
+void run_command(e_command current_command, char **argv);
 e_command get_command(char **argv);
