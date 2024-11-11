@@ -8,7 +8,7 @@
 #include "hyk_filehandling.h"
 #include "hyk_enums.h"
 
-extern char * command_list[6];
+extern char * command_list[7];
 
 char hykernel_directory[128];
 char kernel_list_directory[128];
@@ -23,8 +23,8 @@ int main(int argc, char **argv)
     FILE * config_file = fopen("/etc/opt/hykernel/config/config", "r");
 
     char buffer[64];
-    fgets(buffer, sizeof(buffer), config_file); // gets hykernel_directory string
-    fgets(buffer, sizeof(buffer), config_file); // gets kernel_directory string
+    fgets(buffer, sizeof(buffer), config_file); //gets hykernel_directory string
+    fgets(buffer, sizeof(buffer), config_file); //gets kernel_directory string
 
     char current_char = 0;
     int i = 0;
