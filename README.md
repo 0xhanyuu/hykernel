@@ -25,3 +25,9 @@ This will remove all objects and binaries but will keep your kernel_list directo
 GNU Coreutils, i.e. `touch`, `mkdir`, `read`, `echo`, `tee`, etc. See commands used in `setup-hykernel.sh`.
 
 Compiler: `gcc`, should be able to be substituted with any other compiler, and can be configured in the Makefile.
+
+## **Notes:**
+
+This project is a work in progress. Some commands still lack functionality.
+
+The default compiler used for this project is `gcc` and may be substituted with any other compiler, as well as other compiler information found in the `Makefile`.
